@@ -15,3 +15,121 @@
 # 9. Write a program to find out whether a file is identical & matches the content of another file.
 # 10. Write a program to wipe out the content of a file using python.
 # 11. Write a python program to rename a file to “renamed_by_ python.txt.
+
+# q1
+with open('poem.txt') as f:
+    poem = f.read()
+
+if('twinkle' in poem):
+    print("present")
+else:
+    print("not present")
+
+# # q2
+import random
+
+def game():
+    print("your are playing the game")
+    score = random.randint(1,50)
+    # featching the hiscore
+    with open('hiscore.txt') as f:
+        hiscore = f.read()
+        if(hiscore!=""):
+            hiscore = int(hiscore)
+        else:
+            hiscore = 0
+    
+    print(f"your score: {score}")
+    if(score>hiscore):
+        # write this hiscore to the file
+        with open("hiscore.txt","w") as f:
+            f.write(str(score))
+
+    return score
+
+
+# q3
+def genrateTable(n):
+    table = ""
+    for i in range(1, 11):
+        table += f'{n}X{i}={n*i}\n'
+
+    with open(f"tables/table_{n}.txt","w") as f:
+        f.write(table)
+
+for i in range(2,21):
+    genrateTable(i)
+
+# q4
+word = "Donkey"
+
+with open("/home/prince/python/data-engineer/day10python/file1.txt","r") as f:
+    content = f.read()
+contentNew = content.replace(word, "######")
+
+with open("/home/prince/python/data-engineer/day10python/file1.txt","w") as f:
+    f.write(content)
+
+# q5
+words = ["Donkey",'bad','ganda']
+
+with open("file1.txt","r") as f:
+    content = f.read()
+
+for word in words:
+    contentNew = content.replace(word, "#"*len(word))
+
+with open("file1.txt","w") as f:
+    f.write(content)
+
+# q6
+with open("log.txt") as f:
+    content = f.read()
+
+if("python" in content):
+    print("present")
+else:
+    print("not present")
+
+# q7
+with open("log.txt") as f:
+    lines = f.readline()
+
+lineno = 1
+for lie in lines:
+    if("python" in lines):
+        print(f"present in line no. {lineno}")
+        break
+    lineno += 1 
+else:
+    print("not present")
+
+# q8
+with open("this.txt") as f:
+    content = f.read()
+
+with open("this_copy.txt") as f:
+    content = f.write(content)
+
+# q9
+with open("file1.txt") as f:
+    content1 = f.read()
+
+with open("poem.txt") as f:
+    content2 = f.read()
+
+if(content1==content2):
+    print("identical")
+else:
+    print("not identical")
+
+# q10
+with open("poem.txt") as f:
+    f.write("")
+
+# q11
+with open("poem.txt") as f:
+    content = f.read()
+
+with open("remane_by_python.txt") as f:
+    f.write(content)
